@@ -1,36 +1,27 @@
-# \## Escenario 2: Inicio de sesión con contraseña incorrecta
+# Escenarios Gherkin - SauceDemo
 
-# 
+```gherkin
+Feature: Inicio de sesión en SauceDemo
 
-# ```gherkin
+  Scenario: Acceso exitoso con credenciales válidas
+    Given que el usuario está en la página de inicio de sesión de SauceDemo
+    When ingresa el usuario "standard_user" y la contraseña "secret_sauce"
+    And presiona el botón Login
+    Then debería ver la página Products con el catálogo
 
-# Feature: Inicio de sesión en SauceDemo
+  Scenario: Rechazar el acceso con contraseña incorrecta
+    Given que el usuario está en la página de inicio de sesión de SauceDemo
+    When ingresa el usuario "standard_user" y la contraseña "clave_incorrecta"
+    And presiona el botón Login
+    Then debería mostrarse un mensaje de error
+    But no debería acceder al catálogo
 
-# 
+Feature: Compra de productos
 
-# &#x20; Scenario: Rechazar el inicio de sesión con contraseña incorrecta
-
-# &#x20;   Given que el usuario está en la página de inicio de sesión de SauceDemo
-
-# &#x20;   When ingresa el usuario "standard\_user" y la contraseña "clave\_incorrecta"
-
-# &#x20;   And presiona el botón de inicio de sesión
-
-# &#x20;   Then el sistema debe mostrar un mensaje de error
-
-# &#x20;   And el usuario debe permanecer en la página de inicio de sesión
-
-# ```
-
-# 
-
-# \*\*Resultado esperado:\*\* el sistema rechaza el acceso y muestra un mensaje de error.
-
-# 
-
-# \*\*Resultado real:\*\* completar después de ejecutar el escenario en SauceDemo.
-
-# 
-
-# \*\*Estado:\*\* Pendiente de ejecución.
-
+  Scenario: Completar el checkout con datos válidos
+    Given que el usuario inició sesión y tiene dos productos en el carrito
+    When abre el carrito y presiona Checkout
+    And completa nombre, apellido y código postal
+    And presiona Continue y luego Finish
+    Then debería ver el mensaje "Thank you for your order!"
+```
